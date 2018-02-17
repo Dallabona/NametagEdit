@@ -401,7 +401,28 @@ public class NametagHandler implements Listener {
             }
         }
 
-        if (tempNametag == null) return;
+        if (tempNametag == null)
+            tempNametag = new INametag() {
+                @Override
+                public String getPrefix() {
+                    return "&7";
+                }
+
+                @Override
+                public String getSuffix() {
+                    return "";
+                }
+
+                @Override
+                public int getSortPriority() {
+                    return 15;
+                }
+
+                @Override
+                public boolean isPlayerTag() {
+                    return false;
+                }
+            };
         plugin.debug("Applying " + (tempNametag.isPlayerTag() ? "PlayerTag" : "GroupTag") + " to " + player.getName());
 
         final INametag nametag = tempNametag;
